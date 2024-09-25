@@ -3,7 +3,8 @@ import { defineConfig } from 'src/config';
 export const form = defineConfig({
   name: 'versoly-form',
   checks: [{ plugin: 'formid' }],
-  js: `window.vPageLoadedAt = Date.now()
+  js: `window.vPageLoadedAt = Date.now();
+window.vForms = window.vForms || {};
 
 setTimeout(() => {
   let inputs = [...document.getElementsByTagName("input")]

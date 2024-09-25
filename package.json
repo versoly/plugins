@@ -1,6 +1,6 @@
 {
   "name": "@versoly/plugins",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Plugins for Versoly",
   "sideEffects": false,
   "exports": {
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/versoly/plguins.git"
+    "url": "git+https://github.com/versoly/plugins.git"
   },
   "license": "MIT",
   "author": {
@@ -36,7 +36,7 @@
     "url": "https://versoly.com"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=20.17.0",
     "pnpm": ">=8"
   },
   "keywords": [
@@ -81,5 +81,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "volta": {
+    "node": "20.17.0",
+    "pnpm": "8.15.9"
   }
 }
