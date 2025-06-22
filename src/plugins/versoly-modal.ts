@@ -1,8 +1,6 @@
 import { defineConfig } from 'src/config';
 
-export default defineConfig({
-  name: 'versoly-modal',
-  js: `window.vGetElementsByToggle('modal').forEach(elem => {
+const js = `window.vGetElementsByToggle('modal').forEach(elem => {
   let options = window.vGetElementOptions(elem);
 
   if (options.globalBlockId && window.vComponents[options.globalBlockId]) {
@@ -14,6 +12,10 @@ export default defineConfig({
   }
 
   elem.dataset.options = JSON.stringify(options);
-});`,
+});`;
+
+export default defineConfig({
+  name: 'versoly-modal',
+  js,
   checks: [{ plugin: 'modal' }],
 });
