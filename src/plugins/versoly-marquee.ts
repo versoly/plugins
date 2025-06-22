@@ -5,10 +5,15 @@ import { defineConfig } from 'src/config';
 // url: 'https://versoly.s3.amazonaws.com/libs/versoly-marquee/0.0.1/versoly-marquee.iife.js?hash=2',
 const src = 'https://d1pnnwteuly8z3.cloudfront.net/libs/versoly-marquee/0.0.2/versoly-marquee.iife.js';
 
-export const marquee = defineConfig({
-  name: 'Marquee',
+export default defineConfig({
+  name: 'versoly-marquee',
   options: {
     name: 'Marquee',
+    js: `window.vMarquees = [];
+window.vGetElementsByToggle('marquee').forEach((elem) => {
+  const marquee = new Marquee(elem, window.vGetElementOptions(elem));
+  window.vMarquees.push(marquee);
+});`,
     previewInEditor: true,
     isShown: {
       props: {
@@ -69,13 +74,6 @@ export const marquee = defineConfig({
       defer: true,
     },
   ],
-  js: `window.vMarquees = [];
-window.vGetElementsByToggle('marquee').forEach((elem, index) => {
-  const options = window.vGetElementOptions(elem);
-  const marquee = new Marquee(elem, options);
-  elem.setAttribute('data-marquee-index', index);
-  window.vMarquees.push(elem);
-});`,
   displayNames: [
     {
       displayName: 'Marquee',

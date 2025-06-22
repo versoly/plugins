@@ -1,48 +1,50 @@
 import { defineConfig } from 'src/config';
 
-const js = `window.vGetElementsByToggle('countdown').forEach(e => {
-  const deadline = new Date(e.dataset.countdown).getTime();
+const js = `window.vGetElementsByToggle('countdown').forEach(elem => {
+  const deadline = new Date(elem.dataset.countdown).getTime();
 
-  const daysEl = e.querySelector('[data-countdown-type="days"]'),
-    hoursEl = e.querySelector('[data-countdown-type="hours"]'),
-    minutesEl = e.querySelector('[data-countdown-type="minutes"]'),
-    secondsEl = e.querySelector('[data-countdown-type="seconds"]');
+  let elementsByType = {};
+  elem.querySelectorAll('[data-countdown-type]').forEach(el => {
+    elementsByType[el.dataset.countdownType] = el;
+  });
 
   const countdownFunc = () => {
-    const now = new Date().getTime();
-    let t = deadline - now;
+    let t = (deadline - new Date().getTime()) / 1000;
 
     if (t < 0) {
       clearInterval(x);
       t = 0;
     }
 
-    let seconds = ''+Math.floor((t / 1000) % 60),
-      minutes = ''+Math.floor((t / 1000 / 60) % 60),
-      hours = ''+Math.floor((t / (1000 * 60 * 60)) % 24),
-      days = ''+Math.floor(t / (1000 * 60 * 60 * 24));
+    let valuesByType = {
+      seconds: t % 60,
+      minutes: (t / 60) % 60,
+      hours: (t / (60 * 60)) % 24,
+      days: t / (60 * 60 * 24),
+    };
 
-    if (seconds.length === 1) seconds = '0' + seconds;
-    if (minutes.length === 1) minutes = '0' + minutes;
-    if (hours.length === 1) hours = '0' + hours;
-    if (days.length === 1) days = '0' + days;
+    Object.keys(valuesByType).forEach(type => {
+      if (elementsByType[type]) {
+        let value = Math.floor(valuesByType[type]);
+        if (value < 10) {
+          value = '0' + value;
+        }
 
-    if (secondsEl) secondsEl.innerHTML = seconds;
-    if (minutesEl) minutesEl.innerHTML = minutes;
-    if (hoursEl) hoursEl.innerHTML = hours;
-    if (daysEl) daysEl.innerHTML = days;
+        elementsByType[type].innerHTML = value;
+      }
+    });
   }
 
   var x = setInterval(countdownFunc, 1000);
   countdownFunc();
-})
+});
 `;
 
 const currentDate = new Date();
 const ISODateIn5Days = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1234).toISOString();
 
-export const countdown = defineConfig({
-  name: 'Countdown Options',
+export default defineConfig({
+  name: 'countdown',
   js,
   checks: [{ plugin: 'countdown' }],
   options: {

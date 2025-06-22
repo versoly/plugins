@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const finisherHeader = defineConfig({
-  name: 'Finisher Header',
+export default defineConfig({
+  name: 'finisher-header',
   cdnUrls: [
     {
       url: 'https://d1pnnwteuly8z3.cloudfront.net/js/finisher-header.es5.min.js',

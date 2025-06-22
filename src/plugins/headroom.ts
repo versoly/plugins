@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const headroom = defineConfig({
-  name: 'Headroom',
+export default defineConfig({
+  name: 'headroom',
   cdnUrls: [
     {
       url: 'https://cdnjs.cloudflare.com/ajax/libs/headroom/0.12.0/headroom.min.js',
@@ -9,7 +9,7 @@ export const headroom = defineConfig({
       defer: true,
     },
   ],
-  js: `window.vGetElementsByToggle('headroom').forEach((elem, index) => {
+  js: `window.vGetElementsByToggle('headroom').forEach((elem) => {
   let options = window.vGetElementOptions(elem);
 
   var headroom  = new Headroom(elem, {

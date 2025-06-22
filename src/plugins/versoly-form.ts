@@ -1,6 +1,6 @@
 import { defineConfig } from 'src/config';
 
-export const form = defineConfig({
+export default defineConfig({
   name: 'versoly-form',
   checks: [{ plugin: 'formid' }],
   js: `window.vPageLoadedAt = Date.now();

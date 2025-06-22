@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const versolyUI = defineConfig({
-  name: 'Versoly UI',
+export default defineConfig({
+  name: 'versoly-ui',
   cdnUrls: [
     {
       url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/floating-ui/1.0.1/floating-ui.min.js',

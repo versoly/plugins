@@ -2,13 +2,13 @@ import { defineConfig } from 'src/config';
 
 const js = `window.vTailtips = [];
 
-document.querySelectorAll('[data-toggle="tooltip"]').forEach((elem) => {
+window.vGetElementsByToggle('tooltip').forEach((elem) => {
   const tailtip = Tailtip(elem, window.vGetElementOptions(elem));
   window.vTailtips.push(tailtip);
 });`;
 
-export const tailtip = defineConfig({
-  name: 'Tailtip',
+export default defineConfig({
+  name: 'tailtip',
   src: 'https://d1pnnwteuly8z3.cloudfront.net/libs/tailtip/1.0.3/tailtip.js',
   cdnUrls: [
     {

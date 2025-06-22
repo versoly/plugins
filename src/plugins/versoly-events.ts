@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const eventAnalytics = defineConfig({
-  name: 'Event Analytics',
+export default defineConfig({
+  name: 'versoly-events',
   js: `const eventElements = document.querySelectorAll('[data-eventid]');
 for (const eventElement of eventElements) {
   if (eventElement.tagName !== 'FORM') {

@@ -15,4 +15,17 @@ export default defineConfig({
       moduleResolution: 'node',
     },
   },
+  outExtension: ({ format }) => {
+    let js = '.cjs';
+
+    if (format === 'esm') {
+      js = '.mjs';
+    }
+
+    if (format === 'iife') {
+      js = '.global.js';
+    }
+
+    return { js };
+  },
 });

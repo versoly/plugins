@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const calendly = defineConfig({
-  name: 'Calendly',
+export default defineConfig({
+  name: 'calendly',
   cdnUrls: [
     {
       url: 'https://assets.calendly.com/assets/external/widget.js',
@@ -13,16 +13,16 @@ export const calendly = defineConfig({
     },
   ],
   js: `
-document.querySelectorAll('[data-calendly-url]').forEach(a => {
-  const url = a.getAttribute('data-calendly-url')
+document.querySelectorAll('[data-calendly-url]').forEach(elem => {
+  const url = elem.dataset.calendlyUrl;
 
   if (!url) {
     return;
   }
 
-  a.addEventListener('click', e => {
+  elem.addEventListener('click', e => {
     e.preventDefault();
-    window.Calendly.initPopupWidget({ url, parentElement: a})
+    window.Calendly.initPopupWidget({ url, parentElement: elem });
   })
 });`,
   checks: [{ plugin: 'calendly' }, { html: 'calendly' }],

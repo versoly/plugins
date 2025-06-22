@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const countup = defineConfig({
-  name: 'Countup',
+export default defineConfig({
+  name: 'countup',
   cdnUrls: [
     {
       url: 'https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/3.4.0/scrollreveal.min.js',
@@ -12,17 +12,17 @@ export const countup = defineConfig({
   ],
   js: `window.scrollReveal = ScrollReveal();
 
-window.countStart = e => {
-  var startVal = e.dataset.from ? +e.dataset.from : 0
-    ,endVal = e.dataset.to ? +e.dataset.to : 0
-    ,duration = e.dataset.duration ? +e.dataset.duration : 2
-    ,options = e.dataset.options ? JSON.parse(e.dataset.options) : {}
-  const up = new countUp.CountUp(e, endVal, {...options, startVal, duration});
-  up.start()
+window.countUpStart = (elem) => {
+  var startVal = elem.dataset.from ? +elem.dataset.from : 0
+    ,endVal = elem.dataset.to ? +elem.dataset.to : 0
+    ,duration = elem.dataset.duration ? +elem.dataset.duration : 2
+    ,options = window.vGetElementOptions(elem);
+  const up = new countUp.CountUp(elem, endVal, {...options, startVal, duration});
+  up.start();
 }
 
-window.vGetElementsByToggle('countup').forEach(e => {
-    scrollReveal.reveal(e, {beforeReveal: window.countStart, duration: 0});
+window.vGetElementsByToggle('countup').forEach(elem => {
+  scrollReveal.reveal(elem, {beforeReveal: window.countUpStart, duration: 0});
 });`,
   checks: [{ plugin: 'countup' }],
   options: {

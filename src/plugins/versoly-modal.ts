@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const modal = defineConfig({
-  name: 'Versoly UI Modal',
+export default defineConfig({
+  name: 'versoly-modal',
   js: `window.vGetElementsByToggle('modal').forEach(elem => {
   let options = window.vGetElementOptions(elem);
 

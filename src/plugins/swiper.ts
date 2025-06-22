@@ -2,7 +2,7 @@ import { defineConfig } from 'src/config';
 
 const js = `
 window.vSwipers = [];
-window.vGetElementsByToggle('swiper').forEach((elem, index) => {
+window.vGetElementsByToggle('swiper').forEach((elem) => {
   let props = window.vGetElementOptions(elem);
 
   if (props.pagination && props.pagination.renderBullet === 'number') {
@@ -14,12 +14,11 @@ window.vGetElementsByToggle('swiper').forEach((elem, index) => {
     }
   }
 
-  elem.setAttribute('data-swiper-index', index);
   window.vSwipers.push(new Swiper(elem, props));
 });`;
 
-export const swiper = defineConfig({
-  name: 'Swiper',
+export default defineConfig({
+  name: 'swiper',
   cdnUrls: [
     {
       url: `https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js`,

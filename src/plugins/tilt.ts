@@ -1,15 +1,13 @@
 import { defineConfig } from 'src/config';
 
 const js = `window.vTilts = [];
-window.vGetElementsByToggle('tilt').forEach((tiltEle, index) => {
-  const options = window.vGetElementOptions(elem);
-  VanillaTilt.init(tiltEle, options)
-  tiltEle.setAttribute('data-tilt-index', index);
-  window.vTilts.push(tiltEle);
+window.vGetElementsByToggle('tilt').forEach((elem) => {
+  VanillaTilt.init(elem, window.vGetElementOptions(elem));
+  window.vTilts.push(elem);
 });`;
 
-export const tilt = defineConfig({
-  name: 'Tilt',
+export default defineConfig({
+  name: 'tilt',
   options: {
     name: 'Tilt',
     previewInEditor: true,

@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const prism = defineConfig({
-  name: 'Prism',
+export default defineConfig({
+  name: 'prism',
   cdnUrls: [
     {
       url: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-numbers/prism-line-numbers.min.css',

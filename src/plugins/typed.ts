@@ -1,7 +1,7 @@
 import { defineConfig } from 'src/config';
 
-export const typed = defineConfig({
-  name: 'Typed',
+export default defineConfig({
+  name: 'typed',
   options: {
     name: 'Typed Effect Options',
     previewInEditor: true,
@@ -85,7 +85,7 @@ export const typed = defineConfig({
     },
   ],
   js: `
-window.vGetElementsByToggle('typed').forEach((elem, index) => {
+window.vGetElementsByToggle('typed').forEach((elem) => {
   let options = window.vGetElementOptions(elem);
 
   options.strings = [elem.innerHTML, ...options.strings];
