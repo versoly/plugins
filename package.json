@@ -1,6 +1,6 @@
 {
   "name": "@versoly/plugins",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Plugins for Versoly",
   "sideEffects": false,
   "type": "module",
