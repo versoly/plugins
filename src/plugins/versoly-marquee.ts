@@ -37,7 +37,7 @@ export default defineConfig({
         type: 'SliderPropOption',
         propsName: 'data-options.duration',
         min: 1,
-        max: 20,
+        max: 40,
         stepSize: 1,
         defaultValue: 5,
       },

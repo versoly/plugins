@@ -26,7 +26,7 @@ export default defineConfig({
       defer: true,
     },
     {
-      url: `https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.css`,
+      url: `https://d1pnnwteuly8z3.cloudfront.net/libs/swiper/9.3.2/swiper.css`,
     },
   ],
   js,
