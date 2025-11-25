@@ -8,7 +8,7 @@ export default defineConfig({
       defer: true,
     },
     {
-      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/versoly-ui/2.2.0/versoly-ui.js',
+      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/versoly-ui/2.2.1/versoly-ui.js',
       delay: true,
     },
   ],
