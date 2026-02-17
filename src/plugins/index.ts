@@ -6,6 +6,7 @@ import typed from './typed';
 import countup from './countup';
 import countdown from './countdown';
 import finisherHeader from './finisher-header';
+import headroom from './headroom';
 import taos from './taos';
 import tailtip from './tailtip';
 import versolyMarquee from './versoly-marquee';
@@ -26,6 +27,7 @@ export const plugins = {
   countup,
   countdown,
   'finisher-header': finisherHeader,
+  headroom,
   // versoly packages
   taos,
   tailtip,

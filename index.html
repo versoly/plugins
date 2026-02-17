@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Versoly Plugins</title>
+
+    <style>
+      @layer defaults, theme, base, components, utilities;
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      html,
+      body {
+        scroll-padding-top: 65px; /* set to the height of your header */
+      }
+      @theme {
+        --color-primary-100: #dbeafe;
+        --color-primary-300: #93c5fd;
+        --color-primary-600: #2563eb;
+      }
+      @layer components {
+        .btn {
+          @apply py-1.5 px-3 bg-blue-500 text-sm text-white font-semibold rounded-lg shadow-md hover:bg-blue-700;
+        }
+        .tooltip {
+          @apply hidden opacity-0 transition-all duration-[300ms] bg-black text-white absolute top-0 left-0 rounded px-1 py-0.5;
+        }
+
+        .tooltip-arrow {
+          @apply absolute bg-black w-2 h-2 rotate-45;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="fixed top-0 left-0" data-toggle="headroom">
+      <button class="btn replace-button">replace</button>
+    </nav>
+    <section class="flex flex-col justify-center items-center min-w-[500px] gap-y-3 w-screen h-screen pt-20"></section>
+    <section>
+      <div class="swiper-container relative">
+        <div
+          class="swiper"
+          data-toggle="swiper"
+          data-options="{'slidesPerView':1,'pagination':{'el':'.swiper-pagination','clickable':true,'renderBullet':'number','bulletClass':'swiper-pagination-bullet w-8 h-8 flex justify-center items-center text-base text-center text-dark opacity-100 bg-primary-300/40 rounded-full cursor-pointer','bulletActiveClass':'swiper-pagination-bullet-active bg-primary-600 text-white'},'spaceBetween':16,'breakpoints':{'1024':{'slidesPerView':2,'slidesPerGroup':2}},'navigation':{'prevEl':'.swiper-button-prev','nextEl':'.swiper-button-next'}}"
+        >
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="h-64 flex justify-center items-center bg-primary-600/20">
+                <h2>Slide 1</h2>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="h-64 flex justify-center items-center bg-primary-600/30">
+                <h2>Slide 2</h2>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="h-64 flex justify-center items-center bg-primary-600/40">
+                <h2>Slide 3</h2>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="h-64 flex justify-center items-center bg-primary-600/50">
+                <h2>Slide 4</h2>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        <div class="swiper-pagination static mt-2 flex flex-row justify-center gap-x-2 w-full"></div>
+      </div>
+    </section>
+    <section>
+      <pre
+        class="language-html line-numbers"
+      ><code data-toggle="prism">&lt;section class="py-24 bg-primary-50 bg-gradient-to-br to-secondary-100 from-primary-100">
+  &lt;div class="container">
+    &lt;div class="row md:justify-center mb-10">
+      &lt;div class="col relative md:w-9/12 text-center lg:w-8/12">
+        &lt;h1 class="display-6 font-semibold text-gray-900">
+          All the features you need to build
+          &lt;span class="d-inline-block inline-block bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">
+            faster
+          &lt;/span>
+        &lt;/h1>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/section></code></pre>
+    </section>
+    <section class="mt-[800px]">
+      <h2 data-toggle="countup" data-from="100" data-to="800">100</h2>
+    </section>
+
+    <script>
+      window.vGetElementOptions = (elem) => {
+        if (!elem.dataset.options) {
+          return {};
+        }
+
+        try {
+          let options = elem.dataset.options.split("'").join('"');
+          options = JSON.parse(options);
+          return options;
+        } catch (err) {
+          console.log(err);
+          return {};
+        }
+      };
+
+      window.vGetElementsByToggle = (toggleName) => {
+        const query = '[data-toggle="' + toggleName + '"]';
+        const elements = [...document.querySelectorAll(query)];
+        elements.forEach((elem, index) => {
+          elem.setAttribute('data-' + toggleName + '-index', index);
+        });
+        return elements;
+      };
+
+      window.vPrismTheme = 'duotone-dark';
+    </script>
+    <script type="module">
+      import { plugins } from './src/index.ts';
+
+      console.log(plugins);
+
+      Object.values(plugins).forEach((plugin) => {
+        plugin.cdnUrls?.forEach(({ url, defer, delay }) => {
+          if (url?.endsWith('.css')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = url;
+            document.head.appendChild(link);
+            return;
+          }
+          const script = document.createElement('script');
+          script.src = url;
+          if (defer) {
+            script.defer = true;
+          }
+          if (delay) {
+            setTimeout(() => {
+              document.head.appendChild(script);
+            }, 1000);
+          } else {
+            document.head.appendChild(script);
+          }
+        });
+      });
+
+      const replaceButton = document.querySelector('.replace-button');
+      Object.entries(plugins).forEach(([name, plugin]) => {
+        // for each plugin that has components[0] and js add a click event listener to the replace button that replaces the innerHTML of the section with the first component of the plugin and then imports the js of the plugin
+        if (plugin.js) {
+          let newButton = replaceButton.cloneNode(true);
+          // insert
+          replaceButton.parentNode.appendChild(newButton);
+          newButton.textContent = `${name}`;
+          newButton.addEventListener('click', () => {
+            if (plugin.components && plugin.components[0]) {
+              const section = document.querySelector('section');
+              section.innerHTML = plugin.components[0].html;
+            }
+
+            const script = document.createElement('script');
+            // script.type = 'module';
+            script.textContent = plugin.js;
+            document.body.appendChild(script);
+          });
+        }
+      });
+      replaceButton.remove();
+    </script>
+  </body>
+</html>

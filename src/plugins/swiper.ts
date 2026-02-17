@@ -1,7 +1,6 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
-const js = `
-window.vSwipers = [];
+const js = `window.vSwipers = [];
 window.vGetElementsByToggle('swiper').forEach((elem) => {
   let props = window.vGetElementOptions(elem);
 
@@ -19,16 +18,17 @@ window.vGetElementsByToggle('swiper').forEach((elem) => {
 
 export default defineConfig({
   name: 'swiper',
+  checks: [{ plugin: 'swiper' }],
   cdnUrls: [
     {
-      url: `https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js`,
+      url: `https://cdn.jsdelivr.net/npm/swiper@9.3.2/swiper-bundle.min.js`,
       inline: false,
       defer: true,
     },
     {
+      // requires custom adding layer to css for Tailwind v4
       url: `https://d1pnnwteuly8z3.cloudfront.net/libs/swiper/9.3.2/swiper.css`,
     },
   ],
   js,
-  checks: [{ plugin: 'swiper' }],
 });

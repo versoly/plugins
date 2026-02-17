@@ -1,4 +1,4 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 const js = `window.vGetElementsByToggle('modal').forEach(elem => {
   let options = window.vGetElementOptions(elem);

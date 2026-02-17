@@ -1,7 +1,25 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
+
+const js = `
+window.vGetElementsByToggle('typed').forEach((elem) => {
+  let options = window.vGetElementOptions(elem);
+
+  options.strings = [elem.innerHTML, ...options.strings];
+  elem.innerHTML = '';
+
+  new Typed(elem, {
+    typeSpeed: 100,
+    backSpeed: 50,
+    startDelay: 500,
+    backDelay: 1000,
+    loop: true,
+    ...options
+  });
+});`;
 
 export default defineConfig({
   name: 'typed',
+  checks: [{ plugin: 'typed' }],
   options: {
     name: 'Typed Effect Options',
     previewInEditor: true,
@@ -80,33 +98,18 @@ export default defineConfig({
   },
   cdnUrls: [
     {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js',
+      url: 'https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js',
       defer: true,
     },
   ],
-  js: `
-window.vGetElementsByToggle('typed').forEach((elem) => {
-  let options = window.vGetElementOptions(elem);
-
-  options.strings = [elem.innerHTML, ...options.strings];
-  elem.innerHTML = '';
-
-  new Typed(elem, {
-    typeSpeed: 100,
-    backSpeed: 50,
-    startDelay: 500,
-    backDelay: 1000,
-    loop: true,
-    ...options
-  });
-});`,
-  checks: [{ plugin: 'typed' }],
+  js,
   components: [
-    // {
-    //   name: 'Tilt Div',
-    //   category: 'Plugins',
-    //   html: `<div class="w-full h-full" data-toggle="tilt" data-options="{'max':15,'reset':true}"></div>`,
-    // },
+    //     {
+    //       name: 'Typed Header 1',
+    //       category: 'Plugins',
+    //       html: `<h1 class="display-4 font-semibold mb-6">Explain your product and its <span class="text-primary block"><span class="inline-block" data-toggle="typed" data-options="{'loop':true,'strings':['best feature.', 'easy feature.']}">main benefit.</span></span>
+    // </h1>`,
+    //     },
   ],
   displayNames: [
     {

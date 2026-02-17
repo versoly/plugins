@@ -1,7 +1,6 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 const js = `window.vTailtips = [];
-
 window.vGetElementsByToggle('tooltip').forEach((elem) => {
   const tailtip = Tailtip(elem, window.vGetElementOptions(elem));
   window.vTailtips.push(tailtip);
@@ -9,15 +8,15 @@ window.vGetElementsByToggle('tooltip').forEach((elem) => {
 
 export default defineConfig({
   name: 'tailtip',
-  src: 'https://d1pnnwteuly8z3.cloudfront.net/libs/tailtip/1.0.3/tailtip.js',
+  checks: [{ plugin: 'tailtip' }],
+  src: 'https://d1pnnwteuly8z3.cloudfront.net/libs/tailtip/1.1.0/tailtip.js',
   cdnUrls: [
     {
-      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/tailtip/1.0.3/tailtip.js',
+      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/tailtip/1.1.0/tailtip.js',
       defer: true,
     },
   ],
   js,
-  checks: [{ plugin: 'tailtip' }],
   components: [
     {
       name: 'Info Tooltip',

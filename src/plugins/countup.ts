@@ -1,28 +1,19 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 export default defineConfig({
   name: 'countup',
   cdnUrls: [
     {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/3.4.0/scrollreveal.min.js',
-    },
-    {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.8/countUp.umd.min.js',
+      url: 'https://cdn.jsdelivr.net/npm/countup.js@2.9.0/dist/countUp.umd.js',
     },
   ],
-  js: `window.scrollReveal = ScrollReveal();
-
-window.countUpStart = (elem) => {
+  js: `window.vGetElementsByToggle('countup').forEach(elem => {
   var startVal = elem.dataset.from ? +elem.dataset.from : 0
     ,endVal = elem.dataset.to ? +elem.dataset.to : 0
     ,duration = elem.dataset.duration ? +elem.dataset.duration : 2
     ,options = window.vGetElementOptions(elem);
-  const up = new countUp.CountUp(elem, endVal, {...options, startVal, duration});
+  const up = new countUp.CountUp(elem, endVal, { enableScrollSpy: true, scrollSpyOnce: true, ...options, startVal, duration });
   up.start();
-}
-
-window.vGetElementsByToggle('countup').forEach(elem => {
-  scrollReveal.reveal(elem, {beforeReveal: window.countUpStart, duration: 0});
 });`,
   checks: [{ plugin: 'countup' }],
   options: {
@@ -52,10 +43,17 @@ window.vGetElementsByToggle('countup').forEach(elem => {
       },
       {
         name: 'Countup when Visible',
-        propsName: 'data-aos',
-        options: [false, true],
+        propsName: 'data-options.enableScrollSpy',
         type: 'BooleanPropOption',
-        defaultValue: false,
+        options: [false, true],
+        defaultValue: true,
+      },
+      {
+        name: 'Animate only once',
+        propsName: 'data-options.scrollSpyOnce',
+        type: 'BooleanPropOption',
+        options: [false, true],
+        defaultValue: true,
       },
     ],
   },
@@ -63,7 +61,7 @@ window.vGetElementsByToggle('countup').forEach(elem => {
     {
       name: 'Countup',
       category: 'Plugins',
-      html: `<h2 data-toggle="countup" data-aos data-aos-id="countup:in" data-from="100" data-to="800">100</h2>`,
+      html: `<h2 data-toggle="countup" data-from="100" data-to="800">100</h2>`,
     },
   ],
 });

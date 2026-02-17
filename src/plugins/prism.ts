@@ -1,22 +1,6 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
-export default defineConfig({
-  name: 'prism',
-  cdnUrls: [
-    {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-numbers/prism-line-numbers.min.css',
-    },
-    {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js',
-    },
-    {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/autoloader/prism-autoloader.min.js',
-    },
-    {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-numbers/prism-line-numbers.min.js',
-    },
-  ],
-  js: `
+const js = `
 document.querySelectorAll("pre > code[class^='language-']").forEach((elem) => {
   elem.parentNode.innerHTML = elem.parentNode.innerHTML.trim();
 });
@@ -24,9 +8,9 @@ document.querySelectorAll("pre > code[class^='language-']").forEach((elem) => {
 let themeLink = window.vPrismTheme !== undefined ? window.vPrismTheme : 'default';
 
 if (themeLink === 'default') {
-  themeLink = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css';
+  themeLink = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.min.css';
 } else if (themeLink && !themeLink.includes('https://')) {
-  themeLink = 'https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-' + themeLink + '.min.css';
+  themeLink = 'https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-' + themeLink + '.min.css';
 }
 
 if (themeLink && themeLink.includes('https://')) {
@@ -38,6 +22,24 @@ if (themeLink && themeLink.includes('https://')) {
 
 window.addEventListener('load', () => {
   window.Prism && window.Prism.highlightAll();
-});`,
+});`;
+
+export default defineConfig({
+  name: 'prism',
   checks: [{ html: 'prism' }],
+  cdnUrls: [
+    {
+      url: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js',
+    },
+    {
+      url: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js',
+    },
+    {
+      url: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.js',
+    },
+    {
+      url: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.css',
+    },
+  ],
+  js,
 });

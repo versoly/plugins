@@ -1,4 +1,4 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 const js = `window.vGetElementsByToggle('countdown').forEach(elem => {
   const deadline = new Date(elem.dataset.countdown).getTime();

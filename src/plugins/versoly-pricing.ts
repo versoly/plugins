@@ -1,4 +1,4 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 const js = `document.querySelectorAll('section:has([id$="-pricing-button"], [data-toggle="pricing"])').forEach(section => {
   const durationButtons = section.querySelectorAll('[id$="-pricing-button"]');

@@ -1,6 +1,6 @@
 {
   "name": "@versoly/plugins",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Plugins for Versoly",
   "sideEffects": false,
   "type": "module",
@@ -10,19 +10,22 @@
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index-Bq8k_GQ9.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsdown",
+    "build:watch": "tsdown --watch",
+    "dev": "vite",
     "cm": "cz",
     "clean": "rimraf lib",
     "lint": "eslint src",
     "prepare": "is-ci || husky",
     "semantic-release": "semantic-release",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -55,7 +58,7 @@
     "@semantic-release/npm": "^12.0.0",
     "@semantic-release/release-notes-generator": "^12.1.0",
     "@types/node": "^22.12.0",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.18",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "npm:eslint-ts-patch@8.56.0-0",
@@ -66,10 +69,11 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "semantic-release": "^23.0.5",
-    "tsdown": "^0.15.1",
+    "tsdown": "^0.20.3",
     "type-fest": "^4.26.1",
     "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "vite": "v8.0.0-beta.13",
+    "vitest": "^4.0.18"
   },
   "config": {
     "commitizen": {
@@ -78,6 +82,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "packageManager": "pnpm@9.15.1+sha512.1acb565e6193efbebda772702950469150cf12bcc764262e7587e71d19dc98a423dff9536e57ea44c49bdf790ff694e83c27be5faa23d67e0c033b583be4bfcf"
+  }
 }

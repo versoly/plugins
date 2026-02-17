@@ -1,18 +1,16 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
-// todo marquee can be dyanmic and take breakpoints SWIPER_BREAKPOINTS
-
-// url: 'https://versoly.s3.amazonaws.com/libs/versoly-marquee/0.0.1/versoly-marquee.iife.js?hash=2',
-const src = 'https://d1pnnwteuly8z3.cloudfront.net/libs/versoly-marquee/0.0.2/versoly-marquee.iife.js';
+const src = 'https://d1pnnwteuly8z3.cloudfront.net/libs/versoly-marquee/1.1.0/versoly-marquee.js';
 
 const js = `window.vMarquees = [];
 window.vGetElementsByToggle('marquee').forEach((elem) => {
-const marquee = new Marquee(elem, window.vGetElementOptions(elem));
-window.vMarquees.push(marquee);
+  const marquee = new Marquee(elem, window.vGetElementOptions(elem));
+  window.vMarquees.push(marquee);
 });`;
 
 export default defineConfig({
   name: 'versoly-marquee',
+  checks: [{ plugin: 'marquee' }],
   js,
   options: {
     name: 'Marquee',
@@ -68,7 +66,6 @@ export default defineConfig({
       },
     ],
   },
-  checks: [{ plugin: 'marquee' }],
   src,
   cdnUrls: [
     {

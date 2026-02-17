@@ -1,4 +1,4 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 const js = `window.vTilts = [];
 window.vGetElementsByToggle('tilt').forEach((elem) => {
@@ -8,6 +8,7 @@ window.vGetElementsByToggle('tilt').forEach((elem) => {
 
 export default defineConfig({
   name: 'tilt',
+  checks: [{ plugin: 'tilt' }],
   options: {
     name: 'Tilt',
     previewInEditor: true,
@@ -173,12 +174,11 @@ export default defineConfig({
   },
   cdnUrls: [
     {
-      url: 'https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.js',
+      url: 'https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js',
       defer: true,
     },
   ],
   js,
-  checks: [{ plugin: 'tilt' }],
   components: [
     {
       name: 'Tilt Image',

@@ -1,4 +1,4 @@
-import { defineConfig } from 'src/config';
+import { defineConfig } from '../config';
 
 export default defineConfig({
   name: 'calendly',
