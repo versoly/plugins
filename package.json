@@ -1,15 +1,13 @@
 {
   "name": "@versoly/plugins",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Plugins for Versoly",
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index-Bq8k_GQ9.d.ts",
   "files": [
     "dist"

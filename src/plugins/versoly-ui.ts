@@ -4,11 +4,11 @@ export default defineConfig({
   name: 'versoly-ui',
   cdnUrls: [
     {
-      url: 'https://cdn.jsdelivr.net/npm/@floating-ui/core@1.7.4',
+      url: 'https://cdn.jsdelivr.net/npm/@floating-ui/core@1.7.4/dist/floating-ui.core.umd.min.js',
       defer: true,
     },
     {
-      url: 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.4',
+      url: 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js',
       defer: true,
     },
     {
