@@ -21,7 +21,7 @@ export default defineConfig({
   checks: [{ plugin: 'swiper' }],
   cdnUrls: [
     {
-      url: `https://cdn.jsdelivr.net/npm/swiper@9.3.2/swiper-bundle.min.js`,
+      url: `https://d1pnnwteuly8z3.cloudfront.net/libs/swiper/9.3.2/swiper.js`,
       inline: false,
       defer: true,
     },

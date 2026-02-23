@@ -4,7 +4,7 @@ export default defineConfig({
   name: 'countup',
   cdnUrls: [
     {
-      url: 'https://cdn.jsdelivr.net/npm/countup.js@2.9.0/dist/countUp.umd.js',
+      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/countup/2.9.0/countup.js',
     },
   ],
   js: `window.vGetElementsByToggle('countup').forEach(elem => {

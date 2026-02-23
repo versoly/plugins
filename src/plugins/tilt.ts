@@ -174,7 +174,7 @@ export default defineConfig({
   },
   cdnUrls: [
     {
-      url: 'https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js',
+      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/vanilla-tilt/1.8.1/vanilla-tilt.js',
       defer: true,
     },
   ],

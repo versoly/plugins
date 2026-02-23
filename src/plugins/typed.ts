@@ -98,7 +98,7 @@ export default defineConfig({
   },
   cdnUrls: [
     {
-      url: 'https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js',
+      url: 'https://d1pnnwteuly8z3.cloudfront.net/libs/typed/2.1.0/typed.js',
       defer: true,
     },
   ],

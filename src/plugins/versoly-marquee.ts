@@ -1,6 +1,6 @@
 import { defineConfig } from '../config';
 
-const src = 'https://cdn.jsdelivr.net/npm/versoly-marquee@1.1.1/dist/versoly-marquee.iife.js';
+const src = 'https://d1pnnwteuly8z3.cloudfront.net/libs/versoly-marquee/1.1.1/versoly-marquee.js';
 
 const js = `window.vMarquees = [];
 window.vGetElementsByToggle('marquee').forEach((elem) => {
